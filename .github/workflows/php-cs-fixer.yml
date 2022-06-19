@@ -1,0 +1,24 @@
+name: Check and fix PHP Coding Standards
+
+on:
+  push:
+    branches:
+    - ${{ github.event.release.target_commitish }}
+  
+jobs:
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.release.target_commitish }}
+          
+      - name: Run php-cs-fixer
+        uses: docker://oskarstark/php-cs-fixer-ga
+        
+      - name: Commit fixes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Apply php-cs-fixer changes
