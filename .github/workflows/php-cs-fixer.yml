@@ -1,9 +1,7 @@
 name: Check and fix PHP Coding Standards
 
 on:
-  push:
-    branches:
-    - ${{ github.event.release.target_commitish }}
+  workflow_call:
   
 jobs:
   php-cs-fixer:
