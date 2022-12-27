@@ -2,6 +2,7 @@ name: Update changelog
 
 on:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
   update:
